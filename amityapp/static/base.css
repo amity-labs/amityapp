@@ -1,0 +1,22 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #24273a;
+}
+
+* {
+  color: #cad3f5;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+main, footer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+footer {
+  opacity: 0.5;
+}/*# sourceMappingURL=base.css.map */

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% block head %}
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="/static/base.css">
+    <title>{% block title %}{% endblock %} - Amity</title>
+    {% endblock %}
+</head>
+<body>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+        {% block footer %}
+        &copy; 2023 Amity Labs
+        {% endblock %}
+    </footer>
+</body>
+</html>
