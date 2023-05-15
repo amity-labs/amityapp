@@ -1,0 +1,63 @@
+div.chat div.message {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-block: 1rem;
+  background: #363a4f;
+}
+div.chat div.message.sending {
+  filter: blur(1px);
+  opacity: 0.5;
+}
+div.chat div.message img {
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  transform: translateY(5px);
+}
+div.chat div.message span.author {
+  font-weight: 600;
+}
+div.chat div.message span.text {
+  display: block;
+  margin-top: 1rem;
+}
+div.chat div.message span.tag {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  border-radius: 0.5rem;
+  background: #494d64;
+  color: #a6da95;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+div.chat div.message span.tag:hover {
+  opacity: 1;
+}
+div.chat div.message span.tag.invalid {
+  color: #f4dbd6;
+  cursor: not-allowed;
+}
+div.chat div.message span.tag.invalid:hover {
+  opacity: 0.8;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-block: 1rem;
+  background: #494d64;
+  color: #cad3f5;
+  font-size: 1rem;
+  width: 100%;
+}
+
+span.small {
+  transform: translateY(0.5rem);
+  opacity: 0.8;
+  font-size: 0.8rem;
+  color: #f4dbd6;
+  margin-top: 0.5rem;
+  display: block;
+}/*# sourceMappingURL=chat.css.map */

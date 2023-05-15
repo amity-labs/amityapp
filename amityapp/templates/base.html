@@ -4,6 +4,7 @@
     {% block head %}
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/chat.css">
     <title>{% block title %}{% endblock %} - Amity</title>
     {% endblock %}
 </head>
@@ -11,7 +12,8 @@
     <main>{% block content %}{% endblock %}</main>
     <footer>
         {% block footer %}
-        &copy; 2023 Amity Labs
+        &copy; 2023 Amity Labs on
+        <a href="https://github.com/amity-labs" target="_blank">GitHub</a>
         {% endblock %}
     </footer>
 </body>

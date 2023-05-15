@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  margin: 1rem;
   background-color: #24273a;
 }
 
@@ -19,4 +20,11 @@ main, footer {
 
 footer {
   opacity: 0.5;
+}
+
+hr {
+  width: 50%;
+  border: 0;
+  border-top: 1px solid #8087a2;
+  margin: 3rem auto;
 }/*# sourceMappingURL=base.css.map */

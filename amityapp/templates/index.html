@@ -2,6 +2,147 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     <h1>Amity</h1>
-    <p>Amity is currently under development :)</p>
-    <p>Feel free to <a href="https://github.com/amity-labs" target="_blank">contribute</a>!</p>
+
+    <div class="chat" id="chat">
+        <div class="message">
+            <img
+                src="#"
+                width="30"
+                alt="..."
+            >
+            <span class="author">Loading messages</span>
+            <span class="text">Please wait...</span>
+        </div>
+    </div>
+
+    <span class="small">You are not allowed to discuss, prompte or share illegal content. Your IP address will be publicly visible to other users and saved on our servers. We preserve the right to permanently block users and remove messages.</span>
+    <input type="text" id="message" placeholder="By sending a message, you agree to the terms stated above." autocapitalize="true" autofocus spellcheck="true" aria-label="Message input">
+
+    <script>
+        var messageHash = '';
+
+        function scrollDown() {
+            // scroll to bottom of page
+            html = document.documentElement;
+            html.style.scrollBehavior = "auto";
+            window.scrollTo(0,document.body.scrollHeight);
+            html.style.scrollBehavior = "smooth";
+        }
+
+        function fakeMessage() {
+            // displayed when enter is pressed, and before the message is received from the server
+            div = document.createElement('div');
+            div.classList.add('message');
+            div.classList.add('sending');
+
+            img = document.createElement('img');
+            img.src = '#';
+            img.width = 30;
+            img.alt = '?';
+
+            span = document.createElement('span');
+            span.classList.add('author');
+            span.innerHTML = 'Sending';
+
+            span2 = document.createElement('span');
+            span2.classList.add('tag');
+            span2.innerHTML = '...';
+
+            span3 = document.createElement('span');
+            span3.classList.add('text');
+            span3.innerHTML = message.value;
+
+            div.appendChild(img);
+            div.appendChild(span);
+            div.appendChild(span2);
+            div.appendChild(span3);
+
+            chat.appendChild(div);
+
+            scrollDown();
+        }
+
+        message.addEventListener('keyup', function(event) {
+            if (event.keyCode === 13) {
+                fakeMessage();
+
+                if (message.value == '') {
+                    return;
+                }
+
+                fetch('/api/channel/main', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        message: message.value
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    message.value = '';
+                    refreshChat();
+                });
+            }
+        });
+
+
+        function refreshChat() {
+            fetch('/api/channel/main')
+                .then(response => response.json())
+                .then(data => {
+
+                if (messageHash == data.hash) {
+                    return;
+                }
+
+                messages = data.messages;
+                chat.innerHTML = '';
+
+                messages.forEach(message => {
+                    div = document.createElement('div');
+                    div.classList.add('message');
+
+                    img = document.createElement('img');
+                    img.src = 'https://flagcdn.com/' + message.country + '.svg';
+                    img.width = 30;
+                    img.alt = message.country;
+
+                    span = document.createElement('span');
+                    span.classList.add('author');
+                    span.innerHTML = message.author;
+
+                    span2 = document.createElement('span');
+                    span2.classList.add('tag');
+                    if (message.last_torrent == null) {
+                        span2.classList.add('invalid');
+                    }
+                    span2.innerHTML = message.last_torrent || 'No torrent found';
+                    span2.onclick = function() {
+                        window.open('https://iknowwhatyoudownload.com/en/peer/?ip=' + message.author, '_blank');
+                    };
+                    
+                    span3 = document.createElement('span');
+                    span3.classList.add('text');
+                    span3.innerHTML = message.content;
+
+                    div.appendChild(img);
+                    div.appendChild(span);
+                    div.appendChild(span2);
+                    div.appendChild(span3);
+
+                    chat.appendChild(div);
+
+                    scrollDown();
+                    messageHash = data.hash;
+            });
+
+        });
+        }
+
+        refreshChat();
+        setInterval(refreshChat, 1000);
+    
+    </script>
 {% endblock %}

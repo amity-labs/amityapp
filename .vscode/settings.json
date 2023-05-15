@@ -9,12 +9,16 @@
         "static/base.css.map": true,
         "static/base.css": true,
         "amityapp/static/base.css.map": true,
-        "amityapp/static/base.css": true
+        "amityapp/static/base.css": true,
+        "amityapp/static/chat.css": true,
+        "amityapp/static/chat.css.map": true
     },
     "hide-files.files": [
         "static/base.css.map",
         "static/base.css",
         "amityapp/static/base.css.map",
-        "amityapp/static/base.css"
+        "amityapp/static/base.css",
+        "amityapp/static/chat.css",
+        "amityapp/static/chat.css.map"
     ]
 }

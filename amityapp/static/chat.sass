@@ -1,0 +1,64 @@
+@import '_vars'
+
+div.chat
+    div.message
+        border-radius: 0.5rem
+        padding: 1rem
+        margin-block: 1rem
+        background: $surface0
+
+        &.sending
+            filter: blur(1px)
+            opacity: 0.5
+
+        img
+            border-radius: 5px
+            margin-right: 0.5rem
+            transform: translateY(5px)
+
+        span.author
+            font-weight: 600
+        
+        span.text
+            display: block
+            margin-top: 1rem
+
+        span.tag
+            margin-left: 0.5rem
+            font-size: 0.8rem
+            opacity: 0.8
+            border-radius: 0.5rem
+            background: $surface1
+            color: $green
+            padding: 0.5rem
+            cursor: pointer
+
+            &:hover
+                opacity: 1
+
+            &.invalid
+                color: $rosewater
+                cursor: not-allowed
+
+                &:hover
+                    opacity: 0.8
+
+input
+    border: 0
+    outline: 0
+    border-radius: 0.5rem
+    padding: 1rem
+    margin-block: 1rem
+    background: $surface1
+    color: $text
+    font-size: 1rem
+    width: 100%
+
+span.small
+    transform: translateY(0.5rem)
+    opacity: 0.8
+    font-size: 0.8rem
+    color: $rosewater
+    margin-top: 0.5rem
+    display: block
+
